@@ -1,0 +1,180 @@
+#1. Write a Python program to generate a random color hex, a random alphabetical string, random value between 
+#.  two integers (inclusive) and a random multiple of 7 between 0 and 70. 
+#.  Use random.randint()
+
+import random
+import string
+
+print("generate a random color hex")
+print("#{:06x}".format(random.randint(0,0xFFFFFF)))
+print("\nGenerate a random alphabetical string")
+max_length = 255
+s=""
+for i in range(random.randint(1,max_length)):
+    s = s + random.choice(string.ascii_letters)
+print(s)
+print("generate a random value between two integars,inclusive:")
+print(random.randint(0,12))
+
+
+# 2 - Write a Python program to select a random element from a list, set, dictionary (value) and a file from a 
+#.    directory. Use random.choice()
+
+import random
+import os
+print("print a random element from a list")
+element = ['a',2,'bhh',4,5]
+print(random.choice(element))
+print(random.choice(element))
+element1 = set([100,99,110,200,'setu'])
+print(random.choice(tuple(element1)))
+print(random.choice(tuple(element1)))
+d = {"a":1,"b":3,"c":6,"d":19,"e":20}
+key = random.choice(list(d))
+print(d[key])
+print(d[key])
+print(d[key])
+print("\nprint a random directory:")
+print(random.choice(os.listdir()))
+
+
+# 3 - Write a Python program to generate a random alphabetical character, alphabetical string and 
+#.   alphabetical string of a fixed length. Use random.choice()
+
+import random
+import string
+
+print("print a random alphabetical character:")
+print(random.choice(string.ascii_letters))
+print(random.choice(string.ascii_letters))
+
+print("\nprint a alphabetical string")
+str1 = ""
+for i in range(10):
+    str1 = str1+random.choice(string.ascii_letters)
+print(str1)
+    
+print(random.choice(string.ascii_letters))
+
+max_length = 50
+s=""
+for i in range(random.randint(1,max_length)):
+    s = s+random.choice(string.ascii_letters)
+print(s)
+
+# 4 - Write a Python program to construct a seeded random number generator, also generate a float between 0 and 1, 
+#     excluding 1. Use random.random()
+
+import random
+import string
+
+print("print a seeded random number:")
+print(random.randint(0,10000000))
+
+#for i in range(1,100000000000000000):
+    #print(random.randint(1,i))
+
+print("\nprint a floar number between 0 and 1")
+print(random.random())
+print(random.random())
+
+# 5 - Write a Python program to generate a random integer between 0 and 6 - excluding 6, 
+#.    random integer between 5 and 10 - excluding 10, random integer between 0 and 10, with a step of 3 and 
+#     random date between two dates. 
+#.    Use random.randrange()
+
+import random
+
+print("print a random integar between 0 and 6")
+print(random.randrange(0,6))
+print(random.randrange(0,6))
+print("\nprint a random integar between 5 and 10")
+print(random.randrange(5,10))
+print(random.randrange(5,10))
+
+print("\nprint a ranbdom integar between 0 and 10 with a step of 3")
+print(random.randrange(0,10,3))
+print(random.randrange(0,10,3))
+
+print("\nprint a random date range between two dates")
+print(random.randrange(1/12/2003, 12/12/2009))
+
+# ask bhaiyya
+
+
+# 6 - Write a Python program to shuffle the elements of a given list. Use random.shuffle()
+
+import random
+abhi = [1,3,9,"sex",69,99,"suck","lust"]
+print(abhi)
+print("print a shuffled list")
+random.shuffle(abhi)
+print(abhi)
+
+# 7 - Write a Python program to generate a float between 0 and 1, inclusive and generate a random float within a 
+#.    specific range. Use random.uniform()
+
+import random
+print("print a float number between 0 and 1")
+print(random.uniform(0,1))
+print(random.uniform(0,1))
+print(random.uniform(0,1))
+
+#8 - Write a Python program to create a list of random integers and randomly select multiple items from the said list. 
+#.   Use random.sample()
+
+import random
+print("print a list of random integars")
+population = range(1,100)
+nums_list = random.sample(population,20)
+print(nums_list)
+no_elements = 4
+print("\nform the random integars",no_elements,"is these")
+results_elements = random.sample(nums_list,no_elements)
+print(results_elements)
+
+#9 - Write a Python program to set a random seed and get a random number between 0 and 1. Use random.random
+
+import random
+print("set a random seed and get a random number between 0 & 1")
+random.seed(1)
+new_random_value = random.random()
+print(new_random_value)
+random.seed(2)
+new_random_value = random.random()
+print(new_random_value)
+random.seed(0)
+new_random_value = random.random()
+print(new_random_value)
+
+#10 - Write a Python program to check if a function is a user-defined function or not. 
+#.    Use types.FunctionType, types.LambdaType()
+
+import types
+def func():
+    return 1
+
+print(isinstance(func,types.FunctionType))
+print(isinstance(func,types.LambdaType))
+print(isinstance(max,types.LambdaType))
+print(isinstance(max,types.LambdaType))
+print(isinstance(lambda x:x,types.FunctionType))
+print(isinstance(lambda x:x,types.LambdaType))
+
+# 11 - Write a Python program to check if a given value is a method of a user-defined class. 
+#.     Use types.MethodType()
+
+import types
+class C:
+    def x():
+        return 1
+    def y():
+        return 2
+def b():
+    return 1
+
+print(isinstance(C().x,types.MethodType))
+print(isinstance(C().y,types.MethodType))
+print(isinstance(b,types.MethodType))
+
+# 12 - Write a Python program to check if a given function is a generator or not. Use types.GeneratorType()
