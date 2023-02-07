@@ -1,0 +1,1312 @@
+# Question 51 - Write a Python program to determine profiling of Python programs.
+# A profile is a set of statistics that describes how often and for how long various parts of the program executed. 
+# These statistics can be formatted into reports via the pstats module.
+
+import cProfile
+
+def sum():
+    print(12+34)
+cProfile.run('sum()')
+
+# Question no. 52 -  Write a Python program to print to stderr
+
+import sys
+
+stdout_fileno = sys.stdout
+stderr_fileno = sys.stderr
+
+s_i = ['hi' + '\tthis is python'+ '\texit']
+
+for i in s_i:
+    stdout_fileno.write(i + '\n')
+try:
+    ip= ip+100
+
+except: 
+    stderr_fileno.write("\n\nerror occured as exception!!\n")
+
+
+# quation no. 53 - Write a python program to access environment variables.
+    
+import os
+
+print(os.environ)
+
+for k, v in (os.environ.items()):
+
+    print(f'{k} = {v}')
+
+
+# 54. Write a Python program to get the current username
+
+import os
+#print(os.environ.get("USERNAME"))
+os.getlogin()
+
+# Que 55. Write a Python to find local IP addresses using Python's stdlib
+
+import socket
+socket.gethostbyname(socket.gethostname())
+
+# 56. Write a Python program to get height and width of the console window
+
+import os
+
+#size = os.get_terminal_size()
+size = os.get_terminal_size()
+
+print(size)
+
+# 57 - Write a Python program to get execution time for a Python method.
+
+import time
+
+start_time = time.time()
+#main()
+print("-----%s second-----" % (time.time()- start_time))
+
+# 58 - Write a Python program to sum of the first n positive integers
+
+n = (1,2,3,4,5)
+
+sum =n[0]
+for i in n:
+    if i ==0 or i>= 0:
+        total = sum+i
+    #print(n)
+print("the total value is %d "%total)
+### Not the expected output.. Ask doubt from Bhaiyya
+
+# How to print only a value of sum and in row not in column
+    
+    
+    
+
+# 59 - Write a Python program to convert height (in feet and inches) to centimeters
+
+X = float(input("Enter the height in feet :"))
+Y = float(input("Enter the height in inches: "))
+
+a_feet = X*30.48
+b_inch = Y*2.54
+your_height = a_feet+b_inch
+
+print("Your height is {} cm".format(round(your_height,0)))
+
+# 60 - Write a Python program to calculate the hypotenuse of a right angled triangle
+
+import math
+p = float(input("enter the perpindicular height in cm: "))
+b = float(input("enter the base length in cm: "))
+
+h = math.sqrt((p**2 + b**2))
+
+print("The hypotenuse of the right triangle is {} ".format(round(h,2)))
+
+# 61 - Write a Python program to convert the distance (in feet) to inches, yards, and miles
+
+print("enter the distances in feet to convert to inches, yards & miles ")
+
+d_1 = float(input("for Inches/Yards/Miles "))
+#d_2 = float(input("for Yards"))
+#d_3 = float(input("for miles"))
+
+f_1 = d_1*12
+g_1 = d_1*0.3333
+h_1 = d_1*0.000189
+
+print("the given input of {} in feet is {} inches, {} Yards & {} miles".format(d_1,f_1,round(g_1,2),h_1))
+
+# 62. Write a Python program to convert all units of time into seconds
+
+t_hr = int(input("Enter time in hour: "))
+t_min = int(input("Enter time in minutes: "))
+t_mili_sec = float(input("enter time in miliseconds: "))
+
+#converting into seconds
+
+i = t_hr * 3600
+j = t_min*60
+k = t_mili_sec/0.60
+
+print("the enterred time in hour is {} Seconds, in Minutes is {} & In mili seconds is {} ".format(i,j,round(k)))
+
+# 63 - Write a Python program to get an absolute file path -- ASk from Bhiyaa , why this is not running !!
+
+import os
+
+f = './county_details.csv'
+
+try: 
+    fname = open(f,'r')
+    print(os.path.abspath(f))
+except:
+    print("file not found!!")
+
+# 64 - Write a Python program to get file creation and modification date/times -- -- ASk from Bhiyaa 
+import os.path,time
+
+f = 'county_details.csv'
+
+try:
+    print(time.ctime(os.path.getmtime(f)))
+    print(time.ctime(os.path.getctime(f)))
+except:
+    print("Error!")
+
+# 65 - Write a Python program to convert seconds to day, hour, minutes and seconds
+
+sec = float(input("enter the time is seconds: "))
+
+h_day = sec/86400
+h_hur = sec/3600
+h_min = sec/60
+h_sec = sec
+
+print("the given sec is {} Day, {} Hour, {} Min & {} Sec" .format(round(h_day,2),h_hur,h_min,h_sec))
+
+# 66 - Write a Python program to calculate body mass index 
+
+weight = int(input("Enter the Body weight in lbs: "))
+
+height = float(input("enter the body height in feet: "))
+
+inch = float(float(input("enter the height in inch")))
+
+a = (height*12 + inch)
+
+b = weight/(a**2)*703
+
+print(round(b,2))
+
+
+if b <=18.5:
+    print("You are underweight")
+    
+elif b>=18.5 and b<=24.9:
+#elif b == range(18.5,24.9):
+    print("Perfect! You are normal")
+        
+elif b > 24.9:
+    print("You are overweight")
+
+else:
+    pass
+
+
+# 67 - Write a Python program to convert pressure in kilopascals to pounds per square inch, 
+# a millimeter of mercury (mmHg) and atmosphere pressure
+
+# 68 - Write a Python program to calculate sum of digits of a number. 
+
+n = input("Enter a number: ")
+#j = n.split(",")
+sum = 0 
+for i in str(n):
+    sum = sum+int(i)
+    #sum = i[0]+i[1]+i[2]
+print(sum)
+
+# 69 -  Write a Python program to sort three integers without using conditional statements and loops
+
+#n1,n2,n3 = input("Enter two numbers: ").split()
+#print("1st number: ",n1)
+#print("2nd number: ",n2)
+#print("3rd number: ",n3)
+
+n = [11,12,0,15.6,6,-1,2]
+
+#n.sort(reverse=True)
+
+sorted(n, reverse=True)
+#sum = sum(int(n1)+int(n2)+int(n3))
+#print(sum)
+
+
+# 70 - Write a Python program to sort files by date.
+
+#import os
+
+#print(os.sort.files.getctime("employee.csv"))
+
+import glob
+import os
+
+files = glob.glob("*.csv")
+files.sort(key=os.path.getmtime)
+print("\n".join(files))
+
+
+
+#71 - Write a Python program to get a directory listing, sorted by creation date.
+
+import os.path,time
+
+f ='county_details.csv'
+
+print(sorted(time.ctime(os.path.getctime(f))))
+print(time.ctime(os.path.getmtime(f)))
+
+
+#72 - write a Python program to get the details of math module
+
+import math
+
+math_ls = dir(math)
+print(math_ls)
+
+
+# 73. Write a Python program to calculate midpoints of a line. --- ASK from Bhaiyya
+
+# Approach 1
+'''
+line = input("enter the length of the line in mm: ")
+
+midpoint = int(line)/2
+
+print("the mid point is {} mm".format(midpoint))
+'''
+# Approach 2
+
+x1,y1 = input(" Enter two coordinates(x1 & y1): ").split()
+'''
+x1 = float(input(" Enter coordinates(x1): "))
+x2 = float(input(" Enter coordinates(x2): "))
+y1 = float(input(" Enter coordinates(y1): "))
+y2 = float(input(" Enter coordinates(y2): "))
+'''
+x2,y2 = input(" Enter two coordinates(x2 & y2): ").split()
+
+print("the x1 is: ",x1)
+print("the y1 is: ",y1)
+print("the x2 is: ",x2)
+print("the y2 is: ",y2)
+
+x_m = (float(x1)+float(x2))/2
+y_m = (float(y1)+float(y2))/2
+
+print("the x coordinate middle point is ",x_m)
+print("the y coordinate middle point is ",y_m)
+
+
+# 74. Write a Python program to hash a word
+
+int_val = 4
+float_val = 24.56
+str_value = "Python"
+
+print("The hash value of an integar is :" +str(hash(int_val)))
+print("The hash value of an integar is {}".format(hash(float_val)))
+print("The hash value of an integar is: " +str(hash(str_value)))
+
+# 75 - Write a Python program to get the copyright information and write Copyright information in Python code
+
+import sys
+print("\nCopy Right Information ")
+print(sys.copyright)
+print()
+
+# 76 - Write a Python program to get the command-line arguments 
+#(name of the script, the number of arguments, arguments) passed to a script
+
+import sys
+
+cmd_a = len(sys.argv)
+
+print(cmd_a)
+
+print("\nName of pythin script:",sys.argv[:])
+
+print("\nLength of the argument:",len(sys.argv[:]))
+
+print("\nName of the arguments passed:",str(sys.argv[0]))
+
+
+# 77 - Write a Python program to test whether the system is a big-endian platform or little-endian platform.
+
+# Approach 1  - 
+
+from sys import byteorder
+
+print(byteorder)
+
+
+# Approach - 2
+
+import sys    
+
+
+if sys.byteorder == "Big":
+    print("Big Byte Order")
+    
+else:                           # Ask from Bhaiyya, why elif is not working in this indent
+    sys.byteorder == "Little"
+    print("Little byte order")
+'''
+else:
+    pass
+'''
+
+#  77  - Write a Python program to find the available built-in modules.
+
+# Approach - 1
+
+import sys
+
+a = sys.builtin_module_names
+
+print(a)
+
+
+# Approach - 2
+
+import builtins
+
+help('modules')
+
+
+# 78 - Write a Python program to get the size of an object in bytes.
+
+# Approach - 1
+
+
+import sys
+
+a = sys.getsizeof(20)
+
+print(str(a),"bytes")
+
+
+
+# Approach 2
+
+get_size_of_int = 20
+get_size_of_str = "Abhinav"
+get_size_of_float = 20.01
+
+print("The bytes of an integar ",get_size_of_int,"=",str(sys.getsizeof(get_size_of_int)), "bytes")
+print("The bytes of a string ",get_size_of_str,"=",str(sys.getsizeof(get_size_of_str))+"bytes")
+print("The bytes of a float ",get_size_of_float,"=",str(sys.getsizeof(get_size_of_float))+"bytes")
+
+
+# 79 - Write a Python program to get the current value of the recursion limit. 
+
+import sys
+
+a = sys.getrecursionlimit()
+
+print(a)
+
+
+# 81 - Write a Python program to concatenate N strings 
+
+# Approach 1
+
+a = "I am Ram"
+b = " and i am also a god"
+c = " I was the role model for humanity"
+
+print(a+b+c)
+
+print(a +str(b) +str(c))
+
+# Approach 2
+
+N =["Ram","Laxman","Bharat","Shatrughan"]
+
+i = " ".join(N)
+
+print("All string in a joined way: "+str(i))
+
+#82 - Write a Python program to calculate the sum of all items of a container (tuple, list, set, dictionary)
+
+a = (1,3,5,7,9,0,100)
+b = [1,3,5,7,9,0,100]
+Setc = {1,3,5,7,9,0,100}
+Dictd = {'a':1,'b':3,'c':5,'d':7,'e':9,'f':0,'g':100}
+
+#i_a = "".join(a)
+sum = 0
+for i in a:
+    sum = sum + i
+print("the sum of the list is {}".format(sum))
+
+sum = 0
+for j in b:
+    sum = sum + j
+print("the sum of the tuple is " ,str(sum))
+
+#sum_numbers = sum(c)
+#print(sum_numbers)
+
+print(type(c))
+print(type(d))
+
+sum = 0
+for ikj in Setc:
+    sum = sum + ikj
+print("the sum of the set is "+str(sum))
+
+#xyz = sum(Dictd)
+#print(xyz)
+
+sum = 0
+for x in Dictd:
+    #sum = sum + x Ask from Bhaiyya, why this didnt run
+    sum = sum + Dictd[x]
+print("the sum of the dictionary is",sum)
+
+# 83 -  Write a Python program to test whether all numbers of a list is greater than a certain number.
+
+N = [20,3,2,10,17,19,33,45.5,50,100]
+#M = 30
+for i in N:
+    if N[4]>i:
+    #if i[4] > i:  Ask from Bhaiyya, why this didnot run. 
+        print("True")
+    else:
+        print("False")
+
+# 84 - Write a Python program to count the number occurrence of a specific character in a string
+
+values = ('a','a','a','b','c','d','e','f','a','f')
+
+# Approach 1
+
+#n ={}
+count = 0
+for character in values:
+    if character == 'a':
+        count = count + 1
+    #n = n.append()
+print(count)
+
+# Approach 2
+
+print("the values of the count =", values.count('a'),end ="")
+
+# 85 - Write a Python program to check whether a file path is a file or a directory.
+
+# Approach 1
+
+import os
+path = 'county_details.csv'
+#os.path('county_details.csv')
+if os.path.isdir(path):
+    print("\nIts a Director")
+    
+elif os.path.isfile(path):
+    print("\nIts a file ")
+
+else:
+    print("its a special file(Socket,Fifo,device file)")
+
+# Approach 2 ask from bhaiyya, why this case is not running
+
+import os
+path = 'county_details.csv'
+#os.path.isdir('path')
+if os.path.isfile ==('path'):
+    print("true")
+else:
+    print("False")
+
+
+
+
+# 86 - Write a Python program to get the ASCII value of a character.
+
+import os
+
+print(ord('a'))
+print(ord('1'))
+print(ord('2'))
+print(ord('@'))
+print(ord('#'))
+print(ord('$'))
+
+# 87. Write a Python program to get the size of a file
+
+import os
+
+fname = 'county_details.csv'
+
+a = os.path.getsize(fname)
+
+print('the size of the file is = '+str(a),"bytes")
+
+# 88 - Given variables x=30 and y=20, write a Python program to print "30+20=50"
+
+x = "30"
+
+y = "20"
+
+#c = x + y
+
+print(x,"+",y ,"= 50")
+
+# 89 - Write a Python program to perform an action if a condition is true.
+# Given a variable name, if the value is 1, display the string "First day of a Month!" 
+# and do nothing if the value is not equal.
+
+n = int(input("Enter the number: "))
+
+while True:
+    if n == 1:
+        print("First day of a month")
+    
+    else:
+        pass
+    break;
+
+# 90 - Write a Python program to create a copy of its own source code
+
+import os
+
+
+
+
+#91 - Write a Python program to swap two variables
+
+x = [3]
+#x.append[0] = 7
+#x.append[2] = 3
+y = [1]
+
+temp = x
+
+x = y
+
+y = temp
+
+print(x)
+print(y)
+
+# 92 - Write a Python program to define a string containing special characters in various forms. 
+
+print("\#{}@")
+print("\#{''}[]&***!!@@{''}/")
+
+# 93 -  Write a Python program to get the Identity, Type, and Value of an object
+
+x = 94
+
+print('\nIdentity',x)
+print('\nType',type(x))
+print('\nValue',id(x))
+
+# 94 - Write a Python program to convert a byte string to a list of integers
+
+import os
+
+x = [a,b,c] # ask bhiayya, String are in inverted commas always
+
+print(list(x))
+
+#print(i,"bytes")
+
+
+# 95 - Write a Python program to check whether a string is numeric
+
+x = (1,1.01,"b",3)
+
+for i in x:
+    if type(i) == str:
+        print("The set is not numeric")
+    else: 
+        print("The set is string ")
+
+# 96 - Write a Python program to print the current call stack
+
+import traceback
+
+traceback.print_stack()
+print()
+
+# 97 - Write a Python program to list the special variables used within the language
+
+import os
+
+os.get.specialvarialbe()
+
+# 98 - Write a Python program to get the system time
+
+import time
+
+import sys
+
+time.ctime()
+
+# 99 - Write a Python program to clear the screen or terminal
+
+import os
+import time
+os.system("ls")
+time.sleep(2)
+os.system('clear')
+
+# 100 - Write a Python program to get the name of the host on which the routine is running
+
+import socket
+
+socket.gethostname()
+
+# 101 - Write a Python program to access and print a URL's content to the console
+'''
+import requests
+data = requests.get('https://google.com/')
+print(data.text)
+'''
+
+from urllib.request import urlopen
+
+link = "https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html"
+
+f = urlopen(link)
+myfile = f.read()
+print(myfile)
+
+# 102 - Write a Python program to get system command output.
+
+import subprocess
+
+cmd = "date"
+
+#returned_output = subprocess.check_output(cmd)
+
+returned_output = subprocess.check_output("dir",shell = True, universal_newlines = True)
+
+print(returned_ouput)
+
+#print("current date is: ",returned_output.decode('utf-8'))
+
+#sys.stdout
+
+
+#103 - Write a Python program to extract the filename from a given path
+
+import os
+
+path = ('/Users/kumarabhinav/Desktop/cover letter.pdf')
+
+os.path.basename(path)
+
+# 105 - Write a Python program to get the users environment
+
+import os
+
+os.environ
+
+# 106 - Write a Python program to divide a path on the extension separator
+
+
+import os.path
+for path in [ 'test.txt', 'filename', '/user/system/test.txt', '/', '' ]:
+    print('"%s" :' % path, os.path.splitext(path))
+
+#107 - Write a Python program to retrieve file properties.
+
+import os.path
+import time
+
+file = "president_heights.csv"
+
+print("the ammend time is ",time.ctime(os.path.getatime(file)))
+print("the creation time is ", time.ctime(os.path.getctime(file)))
+print("the modified time is :",time.ctime(os.path.getmtime(file)))
+
+#108 -  Write a Python program to find path refers to a file or directory when you encounter a path name.
+
+import os
+path = 'county_details.csv'
+#os.path('county_details.csv')
+if os.path.isdir(path):
+    print("\nIts a Director")
+    
+elif os.path.isfile(path):
+    print("\nIts a file ")
+
+else:
+    print("its a special file(Socket,Fifo,device file)")
+
+
+# 109 - Write a Python program to check if a number is positive, negative or zero
+
+n = int(input("Enter a number : "))
+
+if n == 0:
+    print("the given no is "+  str(n)  +  " is [Zero]")
+    
+elif n < int(0):
+    print("the given number {} is a [negative number] ".format(n))
+    
+elif n > int(0):
+    #while True:
+    print("the given number is a [positive number]")
+    #print("the given entered number is a "positive number" ") - ASk from Bhaiyya, why this didnot run.
+
+# 110 - Write a Python program to get numbers divisible by fifteen from a list using an anonymous function.
+
+n = [15,30,45,60,75,90,105,120,135,150,165,166,167,168,169,170,172,173,174,175,176,177,178,179,180]
+for i in n:
+    if i%15 ==0:
+        result = i
+        print("the number fifteen are divided are ",result)
+
+# 111 - Write a Python program to make file lists from current directory using a wildcard.
+
+import glob
+file_list = glob.glob('*.*')
+print(file_list)
+
+# 112 - Write a Python program to remove the first item from a specified list.
+
+a = [1,2,3,4,5,6,7,8,9,10]
+
+# Approach 1
+
+# del a[0]
+
+# Approach 2 
+
+a.remove(1)
+
+print(a)
+
+# 113 - Write a Python program to input a number, if it is not a number generates an error message
+
+n = input("Enter a number: ")
+
+try:
+    if n == int(n) or float(n):
+        print("Its either an int or float number")
+except:
+    
+    if n == str(n):
+        print("Its a character")
+    
+
+#114 - Write a Python program to filter the positive numbers from a list.  
+
+n = [1,2,3,-1,-0.01,11,4,-1,-2,-3,7,9]
+
+for i in n:
+    if i > 0:
+        result = i
+        print("The positive numbers are as : ",result)
+
+# 115 - Write a Python program to compute the product of a list of integers (without using for loop).
+
+n = [1,2,3,4,5,6,7,8,9,10]
+'''
+mul = 1
+while True:
+    mul = n[0]*n[1]
+    mul_1 =                         # Ask from Bhiyaa
+    print(mul)
+    break;
+'''
+
+while True:
+    n[0] = n[0]* n[i]
+    i = i + 1 
+    if(i == len(n)):
+        print(n[0]) 
+        break;
+
+# 116 - Write a Python program to print Unicode characters
+
+
+str = u'\u0050\u0079\u0074\u0068\u006f\u006e \u0045\u0078\u0065\u0072\u0063\u0069\u0073\u0065\u0073 \u002d \u0077\u0033\u0072\u0065\u0073\u006f\u0075\u0072\u0063\u0065'
+print(str)
+
+print("here is your checkmark: " + u'\u3709')
+
+#117 - Write a Python program to prove that two string variables of same value point same memory location
+
+import os
+
+a = "Ram"
+b = "Ram"
+
+print("Memory location of a is",hex(id(a)))
+print("Memory location of a is",hex(id(b)))
+
+
+#118 - Write a Python program to create a bytearray from a list 
+
+n = [10,20,30,40,50,60,70]
+
+values = bytearray(n)
+for x in values:
+    print(x)
+
+#119 - Write a Python program to round a floating-point number to specified number decimal places. 
+
+n = 12.30545
+
+a = round(n/10,2)
+b = round(n,2)
+c = round(n,0)
+d = round(n)
+print(a, b, c, d, end = "")
+
+# 120 -  Write a Python program to format a specified string limiting the length of a string.
+
+#Approach 1
+
+n = "1234567890"
+
+print(n[0:6])
+print(n[3:9])
+print(n[:-1])
+
+# Approach 2 -
+
+print("the specified number of string is %.2s" %n)
+print("the specified number of string is %.6s" %n)
+print("the specified number of string is %.10s" %n)
+
+#121 - Write a Python program to determine whether variable is defined or not
+
+n = 9
+n1 = 2
+
+N = n * n1
+
+try:
+    N
+    print("Variable is defined")
+except NameError :
+    print("Variable s not defined")
+
+# 122 - Write a Python program to empty a variable without destroying it.
+#Sample data: n=20
+#d = {"x":200}
+#Expected Output : 0
+#{}
+
+# Ask from Bhaiyya
+n = 20
+N ={"a":1}
+print(type(N)())
+print(type(n)())
+
+#123 - Write a Python program to determine the largest and smallest integers, longs, floats
+
+n = [1,2,10,100,500,-1,-100,1.5,4.5,6.5,100.5]
+a = [1,2,3,4,5,6]
+
+#for z in n:
+    #if type(z) == int:
+     #   print(z)
+
+temp = n[0]
+for i in n:
+    if i > temp:
+        temp = i
+print(temp, end =" ")
+
+temp1 = n[0]
+for j in n:
+    if j < temp1:
+        temp1 = j
+print(temp1, end = " ")
+
+
+#124 - Write a Python program to check whether multiple variables have the same value
+
+# Approach 1
+
+a = 5
+b = 6
+c = 7
+d = 8
+e = 5
+f = 6
+
+if a == b or b == c or c == d or d == e or e == f or a == e or a == f:
+    print("\nmultiple variables have same value")
+else:
+    print("\n\nall variables have not same value")
+
+# Approach 2
+
+a = [1,2,3,4,5,6]
+
+b = [1,2,3,4,5,6]
+
+for i in a: 
+    for j in b:
+        if i == j:
+            print("\nall the variables have same value",i)
+        else:
+            print("\nall the variables have not same value",j)
+        
+
+#125 - Write a Python program to sum of all counts in a collections
+
+num = (1,2,3,4,5,5,4,4,4,3,2,1)
+
+count = 0
+for i in num:
+    count = count+1
+    print(count, end=" ")
+
+    # Ask from Bhaiyya
+    
+'''
+import collections
+
+print(sum(collections.Counter(num).values()))
+'''
+
+#126 - Write a Python program to get the actual module object for a given object
+
+from inspect import getmodule
+from math import sqrt
+print(getmodule(sqrt))
+
+#127 - Write a Python program to check whether an integer fits in 64 bits.
+
+import sys
+
+get_str_n = int(input("Enter the number: "))
+
+#sys.getsizeof(get_str_n)
+
+if get_str_n.bit_length() <= 64:
+    print("it will get fits in 64 bits",get_str_n.bit_length(),"bits")
+    
+else:
+    print("it will not get fits in 64 bit",get_str_n.bit_length(),"bits")
+
+
+
+#128 - Write a Python program to check whether lowercase letters exist in a string
+
+text = "DDDD"
+flag = False
+for c in text:
+    if ord(c)>= 97 and ord(c)<=122:
+        print("lower case exist") 
+        flag = True
+        break
+if flag == False:
+    print("lower case doesnt exist")
+
+#129 - Write a Python program to add leading zeroes to a string
+
+#Approach 1
+
+c = "Ram is a god"
+
+text = "0".join(c)
+print(text)
+
+# Approach 2
+
+str1 = '122.30'
+
+text = str1.rjust(20,'0')
+print(text)
+text1 = str1.ljust(20,'1')
+print(text1)
+
+#130 - Write a Python program to use double quotes to display strings
+
+text = (" Ram \"is our\" God")
+text1 = """ Ram "is our" god"""
+print(text, text1)
+
+#131 - Write a Python program to split a variable length string into variables.
+
+a = "Ram is our God"
+
+b = a[0:10]
+
+c = a[10:14]
+
+print("the new variable b is :",b)
+
+print("the new variable C is:",c)
+
+
+#132 -  Write a Python program to list home directory without absolute path
+
+import os.path
+
+os.path.expanduser('~')
+
+#133 - Write a Python program to calculate the time runs (difference between start and current time) of a program
+
+import time
+
+current_time = time.ctime()
+start_time = time.time()
+
+print(start_time() - current_time())
+
+# Not able to solve
+
+
+# 134 - Write a Python program to input two integers in a single line.
+
+x,y = input("Enter two integars :").split()
+
+x = print("the first(x) variable is: ",x)
+y = print("the second(y) variable is: ",y)
+
+#y = (("the second variable is: "),y)
+
+#135  - Write a Python program to print a variable without spaces between values.
+#Sample value : x =30
+#Expected output : Value of x is "30"
+
+x = 30
+print("""Value of x is"{}" """.format(x))
+
+#136 - Write a Python program to find files and skip directories of a given directory
+
+import os
+print([f for f in os.listdir('/home/students') if os.path.isfile(os.path.join('/home/', f))])
+
+#137 -  Write a Python program to extract single key-value pair of a dictionary in variables
+# Approach 1
+
+dict = {"abc":12,"def":34,"ghi":43}
+print(dict["abc"])
+
+# Approach - 2
+(c1,c2,c3) = dict.items()
+#(c1,c2,c3) = dict.split()
+print(c1)
+print(c2)
+print(c3)
+
+
+#138 - Write a Python program to convert true to 1 and false to 0
+
+# Approach - 1
+
+
+x = True
+y = False
+x == True
+print(int(x)) 
+y == False
+print(int(y))
+
+# Approach 2 - 
+
+print(int(True))
+print(int(False))
+
+#139 - Write a Python program to valid a IP address
+
+import socket
+ip_address = socket.gethostbyname(socket.gethostname())
+
+try:
+    socket.inet_aton(ip_address)
+    print("Valid IP")
+except socket.error:
+    print("Invalid IP")
+    
+
+
+
+#140 - Write a Python program to convert an integer to binary keep leading zeros.
+#Sample data : x=12
+#Expected output : 00001100
+#0000001100
+
+x = 12
+print(format(x,'08b'))
+print(format(x,'010b'))
+print(format(x,'020b'))  # from changing b to f, every time it changes. Ask this from Bhaiyya. 
+
+# 141 - Write a python program to convert decimal to hexadecimal
+#Sample decimal number: 30, 4
+#Expected output: 1e, 04
+
+x = 30.4
+print(format(x,'08e'))
+
+# 142 -  Write a Python program to check if every consecutive sequence of zeroes is followed by a consecutive 
+# sequence of ones of same length in a given string. Return True/False. 
+
+x = input("Enter a series of numbers in 0 & 1 in consecutive sequence manner :")
+
+count_zero = 0
+count_one  = 0
+result = None
+last_character = None
+
+if x[0] == "1":
+    result = False
+else:
+    last_character = None
+    for i in x:
+        print(i)
+        if i == "0":
+            if last_character == "1":
+                print(count_zero, count_one)
+                if count_zero == count_one:
+                    result = True
+                    count_zero = 0
+                    count_one = 0
+                    print("matched")
+                else:
+                    result = False
+                    break   
+            else:
+                count_zero += 1
+                last_character = "0"
+                print("increment 0")
+        if i == "1":
+            count_one += 1
+            last_character = "1"
+            print("increment 1")
+    if count_zero == count_one:
+        result = True
+print(result)
+
+
+# 143 Write a Python program to determine if the python shell is executing in 32bit or 64bit mode on operating system
+'''
+import sys
+
+sys.bit() # Ask from Bhiyaa
+'''
+
+import struct
+
+print(struct.calcsize("P"))
+
+
+
+# 144 -  Write a Python program to check whether variable is integer or string.
+
+x = 1
+#y = 'a'
+
+print(type(x))
+
+try:
+    type(x) == int
+    print("variable {} is an Integar".format(x))
+except:
+    type(x) == str
+    print("variable {} is an Integar".format(x))
+    
+
+
+
+# 144
+
+x = (input("Enter a number or String: "))
+#x = 1
+
+if type(x) == int:
+    print("the given number is an integar")
+else:
+    type(x) == str
+    print("the given input{} is a string".format(x))
+
+#145 - Write a Python program to test if a variable is a list or tuple or a set
+
+
+#x = [1,2,3,'a',4.5,5]
+x = (1,2,3,4,5,5.5,'a')
+#x = {1,2,3,4,5,'a',6,8.8}
+
+if type(x) == list:
+    print("the {} is a list".format(x))
+
+elif type(x) == tuple:
+    print("the x is a tupple"+str(x))
+    
+elif type(x) == set:
+    print("the given x is set")
+
+else:
+    print("The given x is neither list,tuple or set")
+
+    
+'''
+print(type(x))
+
+print(type(y))
+
+print(type(z))
+'''
+
+#146 - Write a Python program to find the location of Python module sources
+
+import sys
+import os
+import imp
+
+print(imp.find_module('os'))
+
+a = sys.builtin_module_names
+print("\n", a)
+
+#147 - Write a Python function to check whether a 
+# number is divisible by another number. Accept two integers values form the user.
+
+x,y = input("Enter two numbers: ").split()
+
+print("the number x is:",x)
+print("the number y is:",y)
+
+if int(x)%int(y) == 0:
+    print("its divisble by the later")
+else:
+    print("its not divisble by later")
+
+# 148 - Write a Python function to find the maximum and minimum numbers from a sequence of numbers
+
+n = (1,2,3,4,5,6,7,8,9)
+
+temp = n[0]
+
+for i in n:
+    if i > temp:
+        temp = i
+print(temp)
+
+for j in n:
+    if j<temp:
+        temp = j
+print(temp)
+
+    
+
+#149 - Write a Python function that takes a positive integer and returns the 
+# sum of the cube of all the positive integers smaller than the specified number
+
+x = (1,2,3,4,5,7,9,10,-2,-1)
+y = 4
+sums = 0
+for i in x:
+    if i<y and i>0:
+        cube_x = i**3
+        sums = sums + cube_x
+print(sums)
+
+
+# 150 Write a Python function to check whether a distinct pair of numbers whose 
+# product is odd present in a sequence of integer values.
+
+x = [2,4,2,4]
+
+for i in x:
+    for j in x:
+        mul = i * j
+        if mul%2 == 1:
+            print("the distinct pair is available in the given list ")
+            break
+    
+
