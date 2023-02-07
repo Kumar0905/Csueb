@@ -1,0 +1,1547 @@
+# 1 - Write a Pandas program to create and display a one-dimensional array-like object containing an array of 
+#.    data using Pandas module
+
+import pandas as pd
+import numpy as np
+
+ds = pd.Series([2,4,6,8,10])
+print(ds)
+
+# 2 - Write a Pandas program to convert a Panda module Series to Python list and it's type.
+
+import pandas as pd
+import numpy as np
+
+ds = pd.Series([2,4,6,8,10])
+print(ds)
+print("converting pandas series to list")
+print(ds.tolist())
+print(type(ds.tolist()))
+
+# 3 - Write a Pandas program to add, subtract, multiple and divide two Pandas Series. Go to the editor
+#.    Sample Series: [2, 4, 6, 8, 10], [1, 3, 5, 7, 9]
+
+import pandas as pd
+import numpy as np
+
+ds = pd.Series([2,4,6,8,10])
+ds1 =pd.Series([1,3,5,7,9])
+ds2 = ds-ds1
+ds3 = ds+ds1
+ds4 = ds*ds1
+ds5 = ds/ds1
+print(ds2)
+print(ds3)
+print(ds4)
+print(round(ds5,2))
+
+
+# 4 - Write a Pandas program to compare the elements of the two Pandas Series. Go to the editor
+#     Sample Series: [2, 4, 6, 8, 10], [1, 3, 5, 7, 10]
+
+import pandas as pd
+
+ds = pd.Series([2,4,6,8,10])
+ds1 = pd.Series([1,3,5,7,9])
+
+print(ds)
+print("data series")
+
+print(ds1)
+print("data series1")
+
+print("comparing data")
+print("Equals")
+print(ds == ds1)
+
+print("Greater Than")
+print(ds>ds1)
+
+print("less than")
+print(ds<ds1)
+
+
+# 5 - Write a Pandas program to convert a dictionary to a Pandas series. Go to the editor
+# Sample Series:
+# Original dictionary:
+# {'a': 100, 'b': 200, 'c': 300, 'd': 400, 'e': 800}
+
+import pandas as pd
+
+dict = {'a':100,'b':200,'c':300,'d':400,'e':500}
+
+new_series = pd.Series(dict)
+print(new_series)
+
+# 6 - Write a Pandas program to convert a NumPy array to a Pandas series. Go to the editor
+#  Sample Series:
+#  NumPy array:
+# [10 20 30 40 50]
+
+import pandas as pd
+import numpy as np
+
+np_array = np.array([10,20,30,40,50])
+print(np_array)
+print("converting numpy arrays to pandas")
+pd_Series = pd.Series(np_array)
+print(pd_Series)
+
+
+# 7 - Write a Pandas program to change the data type of given a column or a Series. Go to the editor
+'''
+Sample Series:
+Original Data Series:
+0 100
+1 200
+2 python
+3 300.12
+4 400
+dtype: object
+'''
+
+import pandas as pd
+
+s1 = pd.Series(['100','200',"python",'300.1','400'])
+
+print("original series")
+
+print("Changing data types to number")
+
+s2 = pd.to_numeric(s1,errors = 'coerce')
+
+print(s2)
+
+# 8 - Write a Pandas program to convert the first column of a DataFrame as a Series. Go to the editor
+'''
+Sample Output:
+Original DataFrame
+col1 col2 col3
+0 1 4 7
+1 2 5 5
+2 3 6 8
+3 4 9 12
+4 7 5 1
+5 11 0 11
+1st column as a Series:
+0 1
+1 2
+2 3
+3 4
+4 7
+5 11
+Name: col1, dtype: int64
+<class 'pandas.core.series.Series'>
+'''
+
+import pandas as pd
+
+d = {'col1':[1,2,3,4,7,11],'col2':[3,6,8,9,10],'col3':[12,34,56,78,90]}
+df = pd.DataFrame(data=d)
+print(df)
+s1 = df.ix[:,0]
+print(s1)
+
+## ask from Bhiayya
+
+# 9 - Write a Pandas program to convert a given Series to an array
+
+import pandas as pd
+import numpy as np
+
+s1 = pd.Series(['100','200','Python','200.16','121.90'])
+print(s1)
+a = np.array(s1.values.tolist())
+print(a)
+
+# 10 - . Write a Pandas program to convert Series of lists to one Series. 
+
+import pandas as pd
+s = pd.Series(['Red','Blue','Green'],['amit','simit','hgyu'],['kjhg'])
+print("original list")
+print(s)
+
+s= s.apply(pd.Series).stack().reset_index(drop = True)
+print(s)
+
+# Ask from Bhaiyya
+
+# 11 - Write a Pandas program to sort a given Series.
+'''
+Sample Output:
+Original Data Series: 0 100
+1 200
+2 python
+3 300.12
+4 400
+'''
+
+import pandas as pd
+
+s1 = pd.Series(['100','200','python','300.12','400'])
+print("Original Series")
+
+print(s1)
+new_s = pd.Series(s1).sort_values()
+print(new_s)
+
+
+# 12 - Write a Pandas program to add some data to an existing Series.
+
+import pandas as pd
+
+s1 = (['100','200','python','300.12','400'])
+
+print("original series")
+print(s1)
+
+update_s = s1.append(pd.Series(['500','PHP'])).reset_index(drop = True)
+
+print(update_s)
+
+#13 - Write a Pandas program to create a subset of a given series based on value and condition.
+
+import pandas as pd
+
+s = (['1','2','3','4','5','6','7','8','9','10'])
+
+print(pd.Series(s))
+
+n = 6
+new_s = s[s < n]
+print(new_s)
+
+
+#14 - Write a Pandas program to change the order of index of a given series
+
+import pandas as pd
+
+s1 = pd.Series(data = [1,2,3,4,5],index = ['A','B','C','D','E'])
+
+print("original series")
+
+print(s1)
+
+s1 = s1.reindex(index = ['B','A','D','C','E'])
+
+print(s1)
+
+
+
+# 15 - Write a Pandas program to create the mean and standard deviation of the data of a given Series
+
+import pandas as pd
+import numpy as np
+
+s1 = pd.Series(data = [1,2,3,4,5,6,7,8,9,10])
+
+print(pd.Series(s1))
+
+print(s1.mean())
+
+print(s1.std())
+
+# 16 - Write a Pandas program to get the items of a given series not present in another given series.
+
+import pandas as pd
+
+sr1 = ([1,2,3,4,5])
+sr2 = ([2,4,6,8,10])
+
+print(pd.Series(sr1))
+print(pd.Series(sr2))
+
+result = sr1[~sr1.isin(sr2)]
+print(result)
+# ask from Bhaiyya
+
+# 17 - Write a Pandas program to get the items which are not common of two given series
+
+import pandas as pd
+import numpy as np
+
+sr1 = pd.Series([1,2,3,4,5])
+sr2 = pd.Series([2,4,6,8,10])
+
+print(sr1)
+print(sr2)
+
+sr11 = pd.Series(np.union1d(sr1,sr2))
+sr22 = pd.Series(np.intersect1d(sr1,sr2))
+result = sr11[~sr11.isin(sr22)]
+print(result)
+
+# 18 - Write a Pandas program to compute the minimum, 25th percentile, median, 75th, and maximum of a given series.
+
+import pandas as pd
+import numpy as np
+
+sr1 = pd.Series([1,2,3,4,5,6,7])
+
+print(sr1)
+
+sr11 = pd.Series(np.mean(sr1))
+sr12 = pd.Series(np.min(sr1))
+sr33 = np.percentile(sr1,q=[25])
+print("the mean is {} minimum is {} and percintle is ".format(sr11,sr12,sr33))
+
+# ask from Bhaiyya
+
+#19 -  Write a Pandas program to calculate the frequency counts of each unique value of a given series.
+
+import pandas as pd
+import numpy as np
+
+sr1 = pd.Series([1,2,1,5,8,9,14,5,10,6,3,17,8,5,7,9,10,1,3,5])
+print(sr1)
+
+result = sr1.value_counts()
+print(result)
+
+#24 - Write a Pandas program convert the first and last character of each word to upper case in each word of a given series
+
+import pandas as pd
+
+sr1 = pd.Series(['php','python','jupyter','tiger'])
+print("original series")
+print(sr1)
+
+#new_set = sr1.UPPER[0,-1]
+result = sr1.map(lambda x: x[0].upper() +x[1:-1]+x[-1].upper())
+print(result)
+
+# 25 - Write a Pandas program to calculate the number of characters in each word in a given series.
+
+import pandas as pd
+
+sr1 = pd.Series(['php','python','divorse','c#'])
+
+print(sr1)
+
+result = sr1.map(lambda x:len(x))
+
+print(result)
+
+
+x = 13
+def san():
+    x = 12
+san()
+print(x)
+
+# 26 - Write a Pandas program to compute difference of differences between consecutive numbers of a given series. 
+
+import pandas as pd
+
+sr1 = pd.Series([0,1,3,5,7,9,13])
+print(sr1)
+
+print(sr1.diff().tolist())
+print(sr1.diff().diff().tolist())
+
+#27 - Write a Pandas program to convert a series of date strings to a timeseries
+
+import pandas as pd
+
+series = pd.Series(['01-Jan-2015','03-Jan-2015','05-Jan-2015','07-Jan-2015','09-Jan-2015','10-Jan-2015','11-Jan-2015'])
+
+print(series)
+
+print(pd.to_datetime(series))
+
+# ask from Bhaiyya
+
+# 28 - 
+
+
+
+#30 - Write a Pandas program to filter words from a given series that contain atleast two vowels
+
+import pandas as pd
+from collections import Counter
+
+series_a= pd.Series(['Orange','Apple','Moon','Umberela','sun','Anurag'])
+print(series)
+result = mask = series_a.map(lambda c: sum([Counter(c.lower()).get(i,0) for i in list('aeiou')]))>=2
+print(series_a[result])
+
+
+
+# 31 - Write a Pandas program to compute the Euclidean distance between two given series. 
+
+import pandas as pd
+import numpy as np
+
+x = pd.Series([1,2,3,4,5,6,7,8,9,10])
+y = pd.Series([11,12,23,14,15,16,17,18,19,20])
+print(x)
+print(y)
+print(x-y)
+print(np.linalg.norm(x-y))
+
+
+# 33 - Write a Pandas program to replace missing white spaces in a given string with the least frequent character
+
+import pandas as pd
+import numpy as np
+str1 = 'abc def abcdef ief'
+
+print(str1)
+
+ser = pd.Series(list(str1))
+print(ser)
+element_freq = ser.value_counts()
+print(element_freq)
+current_freq = element_freq.dropna().index[-1]
+result = "".join(ser.replace('',current_freq))
+print(result)
+
+# ask from Bhaiyya
+
+#35 - Write a Pandas program to create a TimeSeries to display all the Sundays of given year.
+
+import pandas as pd
+result = pd.Series(pd.date_range('2020-01-01',periods = 52,freq = 'W-SUN'))
+print(result)
+
+
+#36 - Write a Pandas program to convert given series into a dataframe with its index as another column on the dataframe
+
+import pandas as pd
+
+series = pd.Series([1,2,3,4,5,6])
+print(series)
+new_series = pd.df(series)
+print(new_series)
+
+#38 - Write a Pandas program to check the equality of two given series
+
+import pandas as pd
+
+x = pd.Series([1,2,3,4,5,6,7,8,9])
+y = pd.Series([1,2,3,4,5,6,7,9,8])
+
+print(x == y)
+
+#39 - Write a Pandas program to find the index of the first occurrence of the smallest and largest value of a given series
+
+import pandas as pd
+import numpy as np
+
+x = pd.Series([1,2,3,4,5,6,7,8,9])
+
+print(np.max(x))
+print(x.idxmax())
+print(x.idxmin())
+
+#40 -  Write a Pandas program to check inequality over the index axis of a given dataframe and a given series.
+
+import pandas as pd
+
+df_data = pd.Dataframe({"w":[68,75,99,100,w],"x":[100,12,13,nan,14],"y":[133,12,23,45,44],'z':[1,6,7,9,10]})
+sr_data = pd.Series
+
+
+# 1 - Write a Pandas program to get the powers of an array values element-wise
+
+import pandas as pd
+
+df = pd.DataFrame({'X':[100,12,90,76,55],'Y':[122,123,145,12,15],'Z':[12,134,145,155,165]})
+print(df)
+
+# 2 - Write a Pandas program to create and display a DataFrame from a specified dictionary data which has the index labels.
+
+import pandas as pd
+import numpy as np
+
+data_series = {'Name':['Australia','Zimbabe','India','United','Africa','Poland'],
+              'Grade':[12.5,9,5,np.nan,5,np.nan],
+              'Attempts':[1,2,3,4,5,6],
+              'Result':['Pass','fail','Pass','Pass','Pass', 'Fail']}
+labels = ['a','b','c','d','e','f']
+
+df = pd.DataFrame(data_series,index = labels)
+print(df)
+
+# 3 - Write a Pandas program to display a summary of the basic information about a specified DataFrame and its data.
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+              'score':[12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+              'attempts':[1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+              'qualify':[['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']]}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+df = pd.DataFrame(exam_dates , index = labels)
+print(df)
+print(df.info())
+
+# 4 - Write a Pandas program to get the first 3 rows of a given DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':['Amy','Raj','Micheal','Anurag','Shyam','Sexy'],'Roll no':[1,2,3,4,5,6],'ID No':[1,np.nan,'2',3,55,np.nan],
+              'percentage':['90.99%','99%','98%','97%','96%','86%']}
+
+labels = ['a', 'b', 'c', 'd', 'e', 'f']
+
+df = pd.DataFrame(exam_dates,index = labels)
+print(df)
+print(df.head(3))
+            
+
+# 5 - Write a Pandas program to select the 'name' and 'score' columns from the following DataFrame
+
+import pandas as pd
+import numpy as np
+
+date_series = {'Name':['Amy','Raj','Micheal','Anurag','Shyam','Sexy'],'Roll no':[1,2,3,4,5,6],'ID No':[1,np.nan,'2',3,55,np.nan],
+              'percentage':['90.99%','99%','98%','97%','96%','86%']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f']
+                       
+df = pd.DataFrame(date_series,index = labels)
+print(df)   
+print("Select Specfic Columns:")
+print(df[['Name','Roll no']])
+
+# 6 - Write a Pandas program to select the specified columns and rows from a given data frame
+
+import pandas as pd
+import numpy as np
+
+date_test = {'Name':['Amy','Raj','Micheal','Anurag','Shyam','Sexy'],'Roll no':[1,2,3,4,5,6],'ID No':[1,np.nan,'2',3,55,np.nan],
+              'percentage':['90.99%','99%','98%','97%','96%','86%']}
+labes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+df = pd.DataFrame(date_test,index = labels)
+
+print(df)
+
+print(df.iloc[[1,2,3,4],[2,3]])
+
+# 7 - Write a Pandas program to select the rows where the number of attempts in the examination is greater than 2
+
+import pandas as pd
+import numpy as np
+
+date_series = {'Name':['Ram','Shyam','Mphan','Raju'],'Roll No':[1,2,3,4],'Attempts':[1,2,3,4]}
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(date_series,index = labels)
+print(df)
+print("rows , number of attempts is graeter then 2")
+print(df[df['Attempts']>2])
+
+# 8 - Write a Pandas program to count the number of rows and columns of a DataFrame.
+
+import pandas as pd
+import numpy as np
+
+date_series = {'name':['ram','laxman','bharat','Shtarughan'],'order':[1,2,3,4],'native':['Aayodhya','Aayodhya','Aayodhya','Aayodhya']}
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(date_series,index = labels)
+print(df)
+total_rows = len(df.axes[0])
+total_columns = len(df.axes[1])
+
+print("the total number of rows and columns are "+str(total_rows))
+print("the total number of columns are"+str(total_columns))
+
+# 9 -  Write a Pandas program to select the rows where the score is missing, i.e. is NaN
+
+import pandas as pd
+import numpy as np
+
+date_ser = {"Name":['Ram','Mohan','Shyam','Khatu'],"Roll No":["1",np.nan,np.nan,np.nan]}
+
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(date_ser, index = labels)
+print(df)
+
+print(df[df['Roll No'].isnull()])
+
+# 10 - Write a Pandas program to select the rows the score is between 15 and 20 (inclusive)
+
+import pandas as pd
+import numpy as np
+
+match_score = {'Players':['Sachin',"Ramesh",'mahesh','Kambli'],'Scores':[100,15,19,17,]}
+
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(match_score,index = labels)
+print(df)
+
+print(df[df['Scores'].between(15,20)])
+
+#11 - Write a Pandas program to select the rows where number of attempts in the examination is less than 2 
+#.   and score greater than 15. 
+
+import pandas as pd
+import numpy as np
+
+exam_score = {"name":['ram','shyam','aesha','parth'],'scores':[10,13,14,16],'attempts':[1,1,4,1]}
+
+labels = ['a','b','c','d']
+df = pd.DataFrame(exam_score, index = labels)
+print(df)
+
+print((df[df['scores']<15]) and (df['attempts']>2))
+
+# Ask from Bhaiyya
+                      
+
+
+# 12 - Write a Pandas program to change the score in row 'd' to 11.5. Go to the editor
+#.     Sample Python dictionary data and list labels:
+
+import pandas as pd
+import numpy as np
+
+exam_series = {'Name':['Ram','Shyam','Mohan','Anurag'],"Roll_No": [1,np.nan,23,np.nan,],'Scores':[45,56,78,89],'attempts': [1, 3, 2, 3],
+'qualify': ['yes', 'no', 'yes', 'no']}
+
+lables = ['a','b','c','d']
+
+df = pd.DataFrame(exam_series , index = labels)
+
+print(df)
+
+df.loc['d','Scores'] = 11.5
+
+print(df)
+
+#13 - Write a Pandas program to calculate the sum of the examination attempts by the students
+
+import pandas as pd
+import numpy as np
+
+exam_Series = {'Name':["Anurag",'Bhagwan','Bhardwaj','Bittu'],'Roll No':[1,4,5,13],'Attempts': [1,3,3,4],'Scores':[10,13,90,76]}
+df =  pd.DataFrame(exam_Series)
+print(df)
+
+print(df['Attempts'].sum())
+
+#14 - Write a Pandas program to calculate the mean score for each different student in DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_data = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+#df = pd.DataFrame(exam_data , index=labels)
+df = pd.DataFrame(exam_data , index=labels)
+print(df)
+print("\nThe mean of the student score is")
+print(df['score'].mean())
+
+#15 - Write a Pandas program to append a new row 'k' to data frame with given values for each column. 
+#.    Now delete the new row and return the original DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_data = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+df = pd.DataFrame(exam_data, index = labels)
+
+print(df)
+
+df.loc['k'] = ['Suresh',23,1,'No']
+print("\n the ammednment series is")
+print(df)
+print('the original series is')
+df = df.drop('k')
+print(df)
+
+# 16 - Write a Pandas program to sort the DataFrame first by 'name' in descending order, then by 'score' in ascending order
+
+import pandas as pd
+import numpy as np
+
+exam_data = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+df = pd.DataFrame(exam_data , index = labels)
+
+print(df)
+
+df.sort_values(by=['name','score'],ascending = [False, True])
+print("\nSort the values by name in descending order and scores in ascending order")
+print(df)
+
+#17 -  Write a Pandas program to replace the 'qualify' column contains the values 'yes' and 'no' with True and False
+
+import pandas as pd
+import numpy as np
+
+exam_data = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+df = pd.DataFrame(exam_data,index = labels)
+
+print(df)
+
+#df.update[df['qualify']] = ['True','False','True','False','False','True','True','False','False','True']
+
+df['qualify'] = df['qualify'].map({'yes':True, 'no':False})
+
+print(df)
+
+# 18 - Write a Pandas program to change the name 'James' to 'Suresh' in name column of the DataFrame
+
+import pandas as pd
+import numpy as np
+
+exam_data = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+df = pd.DataFrame(exam_data,index = labels)
+print(df)
+print("\nReplacing name from James to Suresh")
+df['name'] = df['name'].replace('James','Suresh')
+print(df)
+
+#19 - Write a Pandas program to delete the 'attempts' column from the DataFrame. Go to the editor
+#.    Sample Python dictionary data and list labels:
+
+import pandas as pd
+import numpy as np
+
+exam_data = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+df = pd.DataFrame(exam_data,index = labels)
+
+print(df)
+
+#df[df['attempts'].drop()]
+df.pop('attempts')
+print(df)
+
+# 20 - Write a Pandas program to insert a new column in existing DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_data = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+df = pd.DataFrame(exam_data, index = labels)
+
+print("original series")
+print(df)
+
+color = ['Red','Blue','Green','Yellow','pink','cyan','violet','purple','marron','black']
+df['color'] = color
+
+print("\nupdated data frame is given as")
+print(df)
+
+#21 - Write a Pandas program to iterate over rows in a DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_data = [{'name':'Anastasia', 'score':12.5}, {'name':'Dima','score':9}, {'name':'Katherine','score':16.5}]
+
+df = pd.DataFrame(exam_data)
+
+#print(df)
+
+for index, row in df.iterrows():
+    print(row['name'],row['score'])
+    
+
+#22 - Write a Pandas program to get list from DataFrame column headers
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':['Aram','Chutiyaa','Harami','Kamina','Kutta','Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+df = pd.DataFrame(exam_dates,index=labels)
+
+print(df)
+print(list(df.columns.values))
+
+#23 - Write a Pandas program to rename columns of a given DataFrame
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'col1':[1,2,3,4],'col2':[5,6,7,8],'col3':[10,11,12,23]}
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(exam_dates,labels)
+
+print(df)
+
+df = df.rename(columns ={'col1':'column1','col2':'column2','col3':'column3'})
+
+print(df)
+
+#24 - Write a Pandas program to select rows from a given DataFrame based on values in some columns.
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'col1':[4,2,3,4],'col2':[45,56,57,90],'col3':[100,8,9,10],'col4':[31,29,32,33]}
+labels = [1,2,3,4]
+
+df = pd.DataFrame(exam_dates,index = labels)
+
+print(df)
+
+print("column values col1 is equal to 4")
+
+print(df.loc[df['col1']==4])
+
+#25 - Write a Pandas program to change the order of a DataFrame columns
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'col1':[1,3,5,8],'col2':[23,2,1,2],'col3':[12,11,13,14],'col4':[12,13,14,15]}
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(exam_dates , index = labels)
+
+print(df)
+
+df = df[['col3','col1','col2','col4']]
+
+print(df)
+
+#26 - Write a Pandas program to add one row in an existing DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'col1':[1,2,3,4],'col2':[5,6,7,8],'col3':[9,10,11,12],'col4':[13,14,15,16]}
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(data = exam_dates, index = labels)
+
+print(df)
+
+df2 = {'col1':12,'col2':13,'col3':13}
+
+df = pd.append(df2,ignore_index = True)
+
+print(df)
+
+#27 - Write a Pandas program to write a DataFrame to CSV file using tab separator
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':[1,2,3,4],'roll_no':[1,2,3,4],'grades':[12,13,14,15],'class':['a','b','c','d']}
+labels = [1,2,3,4]
+
+df = pd.DataFrame(data = exam_dates, index = labels)
+
+print(df)
+
+df.to_csv("new_file.csv",index = False)
+new_df = pd.read_csv("new_file.csv")
+print(new_df)
+
+
+
+#28 - Write a Pandas program to count city wise number of people from a given of data set (city, name of the person).
+
+import pandas as pd
+import numpy as np
+
+city_details = {'city name':['hayward','cupertino','milpitas'],'person_name':['albert','sam','kevin']}
+labels = ['a','b','c']
+
+df = pd.DataFrame(data = city_details,index = labels)
+
+print(df)
+
+g1 = df.groupby(["city name"]).size().reset_index(name = "No of Peoples")
+
+print(g1)
+
+# 29 - Write a Pandas program to delete DataFrame row(s) based on given column value. 
+
+import pandas as pd
+import numpy as np
+
+#df = pd.DataFrame('col1':[1,2,3,4],'col2':[10,0,2,3],'col3':[0,3,4,7],'col4':[11,12,13,14])
+df = {'col1':[1,2,3,4],'col2':[10,0,2,3],'col3':[0,3,4,7],'col4':[11,12,13,14]}
+print(df)
+
+df = pd.DataFrame(df1)
+print(df)
+
+df = df[df.col2 != 10]
+print(df)
+
+#30 - Write a Pandas program to widen output display to see more columns
+
+import numpy as np
+import pandas as pd
+
+f = {'col1':[1,2,3,4],'col2':[12,12,13,14],'col3':[10,11,0,9]}
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(data = f,index = labels)
+
+print(df)
+
+pd.set_option('display.max_rows',500)
+pd.set_option('display.max_column',500)
+pd.set_option('display.width',1000)
+print(df)
+
+#31 - Write a Pandas program to select a row of series/dataframe by given integer index
+
+import pandas as pd
+import numpy as np
+
+city_details = {'name':['ram','Mohan','Shyam','Mac'],'city':['hayward','New York','Chicago','Texas']}
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(data = city_details, index = labels)
+print(df)
+result = df.iloc[[2]]
+print("new result")
+print(result)
+
+#32 - Write a Pandas program to replace all the NaN values with Zero's in a column of a dataframe
+
+import pandas as pd
+import numpy as np
+
+exam_date = {"name":['ram','shyam','mohan','randu'],'scores':[1,2,np.nan,np.nan],'roll no':[np.nan,10,np.nan,1]}
+labels = [1,2,3,4]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+
+print(df)
+
+df = df.fillna(0)
+print(df)
+
+#33 - Write a Pandas program to convert index in a column of the given dataframe. 
+
+import pandas as pd
+import numpy as np
+
+exam_data = {'name':['ram','shyam','b2','mohan'],'scores':[10,100,93,80],'roll no':[10,13,16,19]}
+labels = ['a','b','c','d']
+
+df = pd.DataFrame(data = exam_data, index = labels)
+
+print(df)
+
+df = df.reset_index(level = 0,inplace = True)
+print(df)
+
+print("\nHiding Index:")
+print(df.to_string(index=False))
+
+#34 - Write a Pandas program to set a given value for particular cell in  DataFrame using index value.
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':['ram','shyam','mohan','albert'],'marks':[12,40,60,80],'roll_no':[1,4,7,10]}
+labels = [1,2,3,4]
+
+df = pd.DataFrame(data = exam_dates , index = labels)
+
+print(df)
+
+print("\nchange the score of a particular field")
+
+#df.set_value(1,'roll_no',10)
+df.set_value(12, 'marks', 10.2)
+print(df)
+print(df)
+
+# ask from Bhaiyya
+
+#35 - Write a Pandas program to count the NaN values in one or more columns in DataFrame.
+
+import pandas as pd
+import numpy as np
+
+#exam_dates = {}
+exam_date = {"name":['ram','shyam','mohan','randu'],'scores':[1,2,np.nan,np.nan],'roll no':[np.nan,10,np.nan,1]}
+labels = [1,2,3,4]
+
+df = pd.DataFrame(data = exam_date)
+
+print(df)
+
+print(df.isnull().values.sum())
+
+#36 - Write a Pandas program to drop a list of rows from a specified DataFrame
+
+import pandas as pd
+import numpy as np
+
+exam_date = {"name":['ram','shyam','mohan','randu'],'scores':[1,2,np.nan,np.nan],'roll no':[np.nan,10,np.nan,1]}
+labels = [1,2,3,4]
+
+df = pd.DataFrame(data = exam_dates)
+
+print(df)
+
+df = df.drop(df.index[[1,2]])
+
+print('\nAfter dropping 2nd and 4th Row')
+
+print(df)
+
+# program is not running. Ask from Bhaiyya
+
+#37 - Write a Pandas program to reset index in a given DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(exam_date)
+print(df)
+
+print("\nAfter removing 1st and 2nd row")
+
+df = df.drop([0, 1])
+
+print(df)
+
+df = df.reset_index()
+
+print(df)
+
+# program is not running
+
+
+# 38 - Write a Pandas program to divide a DataFrame in a given ratio.
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(exam_date,index = labels)
+
+print(df)
+
+df = df.fillna(0)
+
+print(df)
+
+part_70 = df.sample(frac = 0.7)
+part_30 = df.drop(part_70.index)
+
+print(part_70)
+print(part_30)
+
+#39 - Write a Pandas program to combining two series into a DataFrame
+
+import pandas as pd
+import numpy as np 
+
+sr1 = pd.Series([1,2,3,4,5,6,7,8])
+
+sr2 = pd.Series([12,13,14,15,16,17,18,19])
+
+labels = [1,2,3,4,5,6,7,8]
+
+print(sr1)
+print(sr2)
+
+print("\ncombining both series into a dataframe")
+
+new_df = pd.concat([sr1,sr2],axis = 1)
+
+print(new_df)
+
+#40 - Write a Pandas program to shuffle a given DataFrame rows.
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {"name": ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(data = exam_dates, index = labels)
+
+print(df)
+
+#df = pd.DataFrame(data = exam_dates, index = False)
+
+df = df.sample(frac = 1)
+
+print(df)
+
+#41 - Write a Pandas program to rename a specific column name in a given DataFrame
+
+import pandas as pd
+
+exam_date = {"name": ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(data = exam_date , index = labels)
+
+print(df)
+
+df = df.rename(columns = {'name':'Full Name'})
+
+print(df)
+
+#42 - Write a Pandas program to get a list of a specified column of a DataFrame
+
+import pandas as pd
+
+exam_date = {"name": ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(data = exam_dates,index = labels)
+
+print(df)
+
+print(df[['name']])
+
+new_col3 = df['name'].tolist()
+
+print(new_col3)
+
+#44 - Write a Pandas program to create a DataFrame from a Numpy array and specify the 
+#.    index column and column headers
+
+import pandas as pd
+import numpy as np
+
+student_marks = np.array[('col1','1'),('col2','12'),('col3','19')]
+
+print(student_marks)
+
+# ask from Bhaiyya
+
+#45 -  Write a Pandas program to find the row for where the value of a given column is maximum.
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {"name": ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(exam_dates,index = labels)
+
+print(df)
+
+df = df.fillna(0)
+print(df)
+
+
+print(df['attempts'].argmax())
+print(df['score'].argmax())
+
+#46 -  Write a Pandas program to check whether a given column is present in a DataFrame or not. 
+
+import pandas as pd
+
+exam_date = {'name':['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(data = exam_date)
+
+print(df)
+
+if 'name' in df.columns:
+    print("data frame is present")
+    
+else :
+    print("data frame is not present")
+    
+if 'roll_no' in df.columns:
+    print("data frame is present")
+    
+else:
+    print("data frame is not presnet")
+
+#47 - Write a Pandas program to get the specified row value of a given DataFrame.
+
+import pandas as pd
+
+exam_date = {'name':['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(data = exam_date)
+
+print(df)
+
+print("value of row 4")
+print(df.iloc[3])
+
+print('value of row 0')
+
+print(df.iloc[0])
+
+#48 - Write a Pandas program to get the datatypes of columns of a DataFrame
+
+import pandas as pd
+
+exam_date = {'name':['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(data = exam_date)
+
+print(df)
+
+print(df.dtypes)
+
+
+
+#49 - Write a Pandas program to append data to an empty DataFrame.
+
+import pandas as pd
+import numpy as np
+
+#exam_dates = {'col1':[],'col2':[],"col3":[]}
+#labels = [1,2,3]
+
+df = pd.DataFrame()
+
+print(df)
+
+print("table after appending data")
+
+data = pd.DataFrame({'col1':range(0,4),'col2':range(0,4)})
+
+print(df.append(data))
+
+
+#50 - Write a Pandas program to sort a given DataFrame by two or more columns
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9, 16.5, np.nan, 9, 20, 14.5, np.nan, 8, 19],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(data = exam_dates,index = labels)
+
+print(df)
+
+df = df[['score']]
+
+print(df)
+
+
+#51 - Write a Pandas program to convert the datatype of a given column (floats to ints)
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9.1, 16.5, 5.42, 9.23, 20.34, 14.5, 50.45,8.90, 19.90],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(data = exam_dates,index = labels)
+print("original data types")
+print(df)
+print(df.dtypes)
+print("changing data types to int")
+df.score = df.score.astype(int)
+print(df.dtypes)
+print("new data types with int score")
+
+#52 - Write a Pandas program to remove infinite values from a given DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9.1, np.inf, -4000, 4000, 404.4, -4000.00, np.inf,np.inf, np.inf],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+                      
+df = pd.DataFrame(data = exam_dates, index = labels)
+
+print("original data series")
+print(df)
+
+print('replacing infinite data from the original list to Nan')
+
+print(df.replace([np.inf,-np.inf],np.nan))
+print(df)
+
+
+                      
+                    
+
+#53 - Write a Pandas program to insert a given column at a specific column index in a DataFrame
+
+import pandas as pd
+import numpy as np
+
+exam_dates = {'name':['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+        'score': [12.5, 9.1, np.inf, -4000, 4000, 404.4, -4000.00, np.inf,np.inf, np.inf],
+        'attempts': [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],
+        'qualify': ['yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes']}
+labels = [1,2,3,4,5,6,7,8,9,10]
+
+df = pd.DataFrame(exam_dates, index = labels)
+
+print(df)
+
+rank = [1,2,3,4,5,6,7,8,9,10]
+
+#df = pd.DataFrame.append([rank])
+
+idx = 0
+
+df.insert(loc = idx,column = 'rank',value = rank)
+
+print(df)
+
+#54 - Write a Pandas program to convert a given list of lists into a Dataframe
+
+import pandas as pd
+import numpy as np
+
+data = [['col1', 'col2'], [2, 4], [1, 3]]
+
+
+print(data)
+
+header = data.pop(0)
+
+df = pd.DataFrame(data = data, columns = header)
+
+print(df)
+
+# 55 - Write a Pandas program to group by the first column and get second column as lists in rows
+
+import pandas as pd
+import numpy as np
+
+data_frame = {'col1':['c1','c2','c2','c1','c2','c3'],'col2':[1,2,3,4,5,6]}
+labels = ['a','b','c','d','e','f']
+
+df = pd.DataFrame(data = data_frame, index = labels)
+
+print(df)
+
+df = df.groupby('col1')['col2'].apply(list)
+print(df)
+
+#56 - Write a Pandas program to get column index from column name of a given DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[2,3,4,5,6],'col3':[11,12,13,14,15]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date,index = labels)
+
+print(df)
+
+print(df.columns.get_loc("col3"))
+
+#57 - Write a Pandas program to count number of columns of a DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[1,2,3,4,5],'col3':[3,4,5,6,7]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+print(df)
+
+print(len(df.columns))
+
+
+#58 - Write a Pandas program to select all columns, except one given column in a DataFrame.
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[1,2,3,4,5],'col3':[3,4,5,6,7]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+print(df)
+
+df = df.loc[:,df.columns !='col3']
+print(df)
+
+#59 -  Write a Pandas program to get first n records of a DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[1,2,3,4,5],'col3':[3,4,5,6,7]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+print(df.head(3))
+
+#60 - Write a Pandas program to get last n records of a DataFrame
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[1,2,3,4,5],'col3':[3,4,5,6,7]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+print(df.tail(3))
+
+
+#61 - Write a Pandas program to get topmost n records within each group of a DataFrame
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[10,12,13,14,15],'col3':[100,120,125,127,129]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+#df1 = df.loc(column = 'max')
+
+df1 = df.nlargest(3,'col1')
+print(df1)
+
+df2 = df.nlargest(4,'col2')
+print(df2)
+
+#62 - Write a Pandas program to remove first n rows of a given DataFrame
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[10,12,13,14,15],'col3':[100,120,125,127,129]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+print(df)
+
+print(df.iloc[3:])
+
+#63 - Write a Pandas program to remove last n rows of a given DataFrame
+
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[10,12,13,14,15],'col3':[100,120,125,127,129]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+print(df)
+print(df.iloc[:3])
+
+#64 - Write a Pandas program to add a prefix or suffix to all columns of a given DataFrame.
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[10,12,13,14,15],'col3':[100,120,125,127,129]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+print(df)
+
+print(df.add_prefix("A_"))
+print(df.add_suffix("_I"))
+
+#65 - Write a Pandas program to reverse order (rows, columns) of a given DataFrame
+
+
+import pandas as pd
+import numpy as np
+
+exam_date = {'col1':[1,2,3,4,5],'col2':[10,12,13,14,15],'col3':[100,120,125,127,129]}
+labels = [1,2,3,4,5]
+
+df = pd.DataFrame(data = exam_date, index = labels)
+print(df)
+print("reverse column order")
+print(df.loc[:,::-1])
+print("reverse row orders")
+print(df.loc[::-1])
+print("reverse row order and reset column index")
+print(df.loc[::-1].reset_index(drop = True))
+
+
+
+
+#66 - Write a Pandas program to select columns by data type of a given DataFrame
+
