@@ -1,0 +1,32 @@
+import pandas as pd
+import numpy as np
+from numpy import nan
+
+df = pd.read_csv("playstore_apps.csv",index_col = 'App')
+df.drop_duplicates(keep = False,inplace = True)
+df.info()
+df.head()
+print(df['Category'].unique())
+print(df[df['Category'] =='1.9'])
+#df.drop("Life Made Wi-Fi Touchscreen Photo Frame",inplace=True)
+#playstore_app.drop(playstore_app['Life Made Wi-Fi Touchscreen Photo Frame'].index, inplace=True)
+#df = df[df.App!= "Life Made Wi-Fi Touchscreen Photo Frame"]
+df = df[df.Category!= '1.9']
+df
+print(df['Category'].unique())
+df = df.fillna(0)
+df
+df.head(25)
+print(df['Reviews'].unique())
+print(df['Size'].unique())
+print(df['Installs'].unique())
+print(df['Type'].unique())
+print(df['Price'].unique())
+print(df['Content Rating'].unique())
+print(df['Genres'].unique())
+print(df['Last Updated'].unique())
+print(df['Current Ver'].unique())
+print(df['Android Ver'].unique())
+df.to_csv('Clean.csv')
+df1 = pd.read_csv("clean.csv",index_col = 'App')
+df1.head(25)
