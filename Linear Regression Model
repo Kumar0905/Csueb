@@ -1,0 +1,409 @@
+
+
+from pathlib import Path # to interact with file system.
+
+import numpy as np # for working with arrays.
+import pandas as pd # for working with data frames (tables).
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+import statsmodels.formula.api as sm
+import matplotlib.pylab as plt
+import seaborn as sns
+from pandas.plotting import scatter_matrix
+
+import dmba
+from dmba import regressionSummary, exhaustive_search
+from dmba import backward_elimination, forward_selection, stepwise_selection
+from dmba import adjusted_r2_score, AIC_score, BIC_score
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[33]:
+
+
+#create the dataframe
+data_df = pd.read_csv('Data1.csv')
+
+
+# In[34]:
+
+
+#show the shape
+data_df.shape
+
+
+# In[35]:
+
+
+# Show Columns
+data_df.columns
+
+
+# In[36]:
+
+
+# show data heads. 
+data_df.head()
+
+
+# In[37]:
+
+
+#describe the data
+data_df.describe(include='all')
+
+
+# In[38]:
+
+
+print(data_df.isna().sum())
+
+
+# In[42]:
+
+
+data_df.fillna(0,inplace = True)
+
+
+# In[43]:
+
+
+print(data_df.isna().sum())
+
+
+# In[44]:
+
+
+np.round(data_df.describe(),2)
+
+
+# In[45]:
+
+
+# get the information on the data types
+data_df.info()
+
+
+# In[46]:
+
+
+data_df.hist(bins=50, figsize=(20,15))
+plt.show()
+
+
+# In[47]:
+
+
+# Create a histogram of Income
+plt.hist(data_df['Income'], bins=20, color='black')
+plt.title('Distribution of Income')
+plt.xlabel('Income')
+plt.ylabel('Frequency')
+plt.show()
+
+
+# In[48]:
+
+
+# Create a histogram of NumOfOrders
+plt.hist(data_df['NumOfOrders'], bins=10, color='red')
+plt.title('Distribution of Number of Orders')
+plt.xlabel('Number of Orders')
+plt.ylabel('Frequency')
+plt.show()
+
+
+# In[49]:
+
+
+# Create a histogram of Satisfaction
+plt.hist(data_df['Satisfaction'], bins=5, color='green')
+plt.title('Distribution of Customer Satisfaction')
+plt.xlabel('Satisfaction Level')
+plt.ylabel('Frequency')
+plt.show()
+
+
+# In[50]:
+
+
+# Count the number of customers by Race
+race_counts = data_df['Race'].value_counts()
+
+# Create a bar graph of the Race counts
+plt.bar(race_counts.index, race_counts.values)
+plt.title('Number of Customers by Race')
+plt.xlabel('Race')
+plt.ylabel('Number of Customers')
+plt.show()
+
+
+# This observation can help us to understand the demographic distribution of the customers in this dataset, and can be used to develop strategies for targeting specific racial groups for marketing or other purposes.
+
+# In[51]:
+
+
+#show the heatmap for the dataframe
+'''corr = data_df.corr()
+fig, ax = plt.subplots()
+fig.set_size_inches(11, 7)
+sns.heatmap(corr, annot=True, fmt=".1f", cmap="RdBu", center=0, ax=ax, vmin=-1, vmax=1,)
+
+plt.show()'''
+
+
+# In[52]:
+
+
+columns_new = ['Income','HouseholdSize', 'NumOfOrders', 'DaysSinceLast', 'Spending_2020', 'Spending_2021']
+
+print(columns_new)
+
+fig, ax = plt.subplots(figsize=(12, 8))
+new_data = data_df[columns_new]
+corr = new_data.corr()
+sns.heatmap(corr, cmap='coolwarm',fmt=".1f",center =0, annot=True, ax=ax,vmin=-1, vmax=1)
+
+plt.show()
+
+
+# Income and Spending_2020 are positively correlated, which suggests that people with higher incomes tend to spend more money in 2020.
+# Income and Spending_2021 are also positively correlated, which indicates that people with higher incomes tend to spend more money in 2021.
+# There is a strong positive correlation between Spending_2020 and Spending_2021, which suggests that customers who spent more money in 2020 are likely to spend more money in 2021 as well.
+# DaysSinceLas' and NumOfOrders are negatively correlated, which suggests that customers who order more frequently tend to have shorter time periods between orders.
+# There is no significant correlation between HouseholdSize and any of the other variables in this dataset.
+
+# In[53]:
+
+
+#explore the sales in 2021 and the relationship between 2021 sales and other numerical predictarors. 
+
+
+# In[54]:
+
+
+ax = data_df.boxplot(column='Spending_2021')
+ax.set_ylabel('Spending_2021')
+plt.show()
+
+
+# In[55]:
+
+
+numerical_cols = ['Income', 'HouseholdSize', 'NumOfOrders', 'DaysSinceLast', 'Spending_2020', 'Spending_2021']
+data = data_df[numerical_cols]
+
+# Create scatter plots with regression line for each predictor variable against 'Spending_2021'
+sns.pairplot(data, x_vars=numerical_cols[:-1], y_vars=['Spending_2021'], kind='reg', height=4)
+
+# Show the plot
+plt.show()
+
+
+# In[56]:
+
+
+hist = data_df.Income.hist()
+hist.set_xlabel('Income')
+hist.set_ylabel('NumOfOrders')
+
+plt.show()
+
+
+# In[57]:
+
+
+car_df.plot.scatter(x='HouseholdSize', y='NumOfOrders', legend=False)
+plt.show()
+
+
+# In[58]:
+
+
+columns = ['Income', 'HouseholdSize', 'NumOfOrders', 'DaysSinceLast', 'Spending_2020', 'Spending_2021']
+scatter_matrix(data_df[columns], figsize=(12, 12), diagonal='hist')
+plt.show()
+
+
+# This scatter matrix can provide insights into the relationships between the selected variables, such as whether there is a positive or negative correlation between them, whether there are any outliers, and any patterns or clusters in the data.
+
+# The scatter matrix in this case shows the relationships between the numerical variables in the dataset: Income, HouseholdSize, NumOfOrders, DaysSinceLast, Spending_2020, and Spending_2021. The scatter plots show how each variable relates to each other variable in the dataset. For example, we can see that there is a positive correlation between Income and Spending_2020, and between Income and Spending_2021. We can also see that there is a positive correlation between Spending_2020 and Spending_2021. The scatter matrix can be used to identify relationships between variables, and to visually assess the strength and direction of those relationships.
+
+# In[59]:
+
+
+#check variable types of the columns
+data_df.dtypes
+
+
+# In[60]:
+
+
+data_df['Satisfaction'] = data_df['Satisfaction'].astype('category')
+data_df['Race'] = data_df['Race'].astype('category')
+data_df['Channel'] = data_df['Channel'].astype('category')
+data_df['Sex'] = data_df['Sex'].astype('category')
+
+
+# In[61]:
+
+
+sns.barplot(x='Sex', y='Spending_2021', data=data_df, palette='Blues_d')
+plt.title('2021 Spending by Gender')
+plt.xlabel('Gender')
+plt.ylabel('Spending in 2021')
+plt.show()
+
+
+# In[62]:
+
+
+sns.barplot(x='Channel', y='Spending_2021', data=data_df)
+plt.title('2021 Sales by Channel')
+plt.xlabel('Channel')
+plt.ylabel('2021 Sales')
+plt.show()
+
+
+# In[63]:
+
+
+sns.barplot(x='Satisfaction', y='Spending_2021', data=data_df)
+plt.title('2021 Sales by Satisfaction Level')
+plt.xlabel('Satisfaction Level')
+plt.ylabel('2021 Sales')
+plt.show()
+
+
+# In[64]:
+
+
+sns.barplot(x='Race', y='Spending_2021', data=data_df)
+plt.title('2021 Sales by Race')
+plt.xlabel('Race')
+plt.ylabel('2021 Sales')
+plt.show()
+
+
+# The bar graphs for channel, race, and satisfaction level show the frequency distribution of each category in the respective variable and their corresponding spending in 2021.
+# 
+# In the channel variable, we can see that the majority of customers made their purchases through the TV channel, followed by the web and social media. The customers who made purchases through the TV channel also had the highest spending in 2021, followed by those who used the web channel.
+# 
+# In the race variable, we can see that the majority of customers were white, followed by black and Hispanic customers. However, the average spending in 2021 was highest for Hispanic customers, followed by white customers and then black customers.
+# 
+# In the satisfaction level variable, we can see that the majority of customers were either satisfied or neutral. However, customers who were very satisfied with their previous purchases had the highest spending in 2021, followed by those who were very dissatisfied. Customers who were neutral had the lowest spending in 2021.
+
+# In[65]:
+
+
+predictors = ['Income', 'HouseholdSize', 'NumOfOrders', 'DaysSinceLast', 'Spending_2020']
+outcome = 'Spending_2021'
+
+# partition data
+X = pd.get_dummies(data_df[predictors], drop_first=True)
+y = data_df[outcome]
+train_X, valid_X, train_y, valid_y = train_test_split(X, y, test_size=0.4, random_state=1)
+
+car_lm = LinearRegression()
+car_lm.fit(train_X, train_y)
+
+# print coefficients
+print('intercept ', car_lm.intercept_)
+print(pd.DataFrame({'Predictor': X.columns, 'coefficient': car_lm.coef_}))
+
+# print performance measures
+regressionSummary(train_y, car_lm.predict(train_X))
+
+
+# In[66]:
+
+
+predictors = ['Income', 'HouseholdSize', 'NumOfOrders', 'DaysSinceLast', 'Spending_2020']
+outcome = 'Spending_2021'
+
+# partition data
+X = pd.get_dummies(data_df[predictors], drop_first=True)
+y = data_df[outcome]
+train_X, valid_X, train_y, valid_y = train_test_split(X, y, test_size=0.4, random_state=1)
+
+car_lm = LinearRegression()
+car_lm.fit(train_X, train_y)
+
+# print coefficients
+print('intercept ', car_lm.intercept_)
+print(pd.DataFrame({'Predictor': X.columns, 'coefficient': car_lm.coef_}))
+
+# print performance measures
+regressionSummary(valid_y, car_lm.predict(valid_X))
+
+
+# In[67]:
+
+
+#We will first define a couple of functions to be used in Exhaustive Search function
+def train_model(variables):
+    model = LinearRegression()
+    model.fit(train_X[variables], train_y)
+    return model
+
+def score_model(model, variables):
+    pred_y = model.predict(train_X[variables])
+    # we negate as score is optimized to be as low as possible
+    return -adjusted_r2_score(train_y, pred_y, model)
+
+allVariables = train_X.columns
+results = exhaustive_search(allVariables, train_model, score_model)
+
+data = []
+for result in results:
+    model = result['model']
+    variables = result['variables']
+    AIC = AIC_score(train_y, model.predict(train_X[variables]), model)
+    
+    d = {'n': result['n'], 'r2adj': -result['score'], 'AIC': AIC}
+    d.update({var: var in result['variables'] for var in allVariables})
+    data.append(d)
+    
+# Define the width of output presentation to be wider to display results in two rows (instead of more rows otherwise). 
+pd.set_option('display.width', 100)
+
+# Display the Exhaustive Search results.
+print(pd.DataFrame(data, columns=('n', 'r2adj', 'AIC') + tuple(sorted(allVariables))))
+#print(pd.DataFrame(data)) #Good enough too. Variables appear in the same order in dataset 
+
+# Reset the output width to the default. 
+pd.reset_option('display.width')
+
+
+# Based on the given table, we can see that five models were tested with different combinations of predictors. The predictors were Income, HouseholdSize, NumOfOrders, DaysSinceLast, and Spending_2020. The models were evaluated based on three performance metrics: adjusted R-squared (r2adj), (AIC), and predictor inclusion.
+# 
+# 
+# 
+# Model 2 has a higher adjusted R-squared value of 77.19% and a slightly lower AIC than Model 1. Model 3 (including three predictors: Spending_2020, NumOfOrders, and HouseholdSize) has a slightly lower adjusted R-squared value than Model 2 but a similar AIC.
+# 
+# Model 4, which includes all four predictors, has a slightly lower adjusted R-squared value and a slightly higher AIC than Model 3. Model 5, which includes all five predictors, has a further reduction in adjusted R-squared and a higher AIC than Model 4.
+# 
+# Therefore, based on the performance metrics, Model 2 and Model 3 can be considered as the two best models for predicting Spending_2021. Model 2 has a higher adjusted R-squared value, while Model 3 has a slightly lower AIC. However, further evaluation and testing would be needed to determine the best model for this specific problem.
+
+# In[68]:
+
+
+predictors = ['Income', 'HouseholdSize', 'NumOfOrders', 'DaysSinceLast', 'Spending_2020']
+outcome = 'Spending_2021'
+
+# partition data
+X = pd.get_dummies(data_df[predictors], drop_first=True)
+y = data_df[outcome]
+train_X, valid_X, train_y, valid_y = train_test_split(X, y, test_size=0.4, random_state=1)
+
+car_lm = LinearRegression()
+car_lm.fit(train_X, train_y)
+
+# print coefficients
+print('intercept ', car_lm.intercept_)
+print(pd.DataFrame({'Predictor': X.columns, 'coefficient': car_lm.coef_}))
+
+# print performance measures
+regressionSummary(valid_y, car_lm.predict(valid_X))
